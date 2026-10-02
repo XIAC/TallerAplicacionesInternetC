@@ -1,0 +1,206 @@
+  /* RICHARD CUELLAR ROJAS */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienvenidos a la UAB – Universidad Adventista de Bolivia</title>
+<style>
+  :root{
+    --azul:#0b2a5b;
+    --azul-2:#143d85;
+    --dorado:#e0a526;
+    --crema:#fbf7ee;
+    --texto:#1d2433;
+    --suave:#5b6478;
+    --blanco:#fff;
+    --sombra:0 10px 30px rgba(11,42,91,.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--texto);background:var(--crema);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(11,42,91,.95);backdrop-filter:blur(8px);color:#fff}
+  .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:.8rem 1.2rem}
+  .logo{display:flex;align-items:center;gap:.6rem;font-weight:700;letter-spacing:.5px}
+  .logo span.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--dorado);color:var(--azul);font-weight:800}
+  nav ul{display:flex;gap:1.2rem;list-style:none}
+  nav a{font-size:.95rem;opacity:.9;padding:.3rem 0;border-bottom:2px solid transparent;transition:.2s}
+  nav a:hover{opacity:1;border-color:var(--dorado)}
+  @media(max-width:720px){nav ul{display:none}}
+
+  /* HERO */
+  .hero{position:relative;color:#fff;text-align:center;padding:6rem 1.2rem 7rem;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(224,165,38,.25),transparent 45%),
+      radial-gradient(circle at 80% 80%,rgba(255,255,255,.12),transparent 40%),
+      linear-gradient(135deg,var(--azul),var(--azul-2));
+    overflow:hidden}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;
+    background:var(--crema);clip-path:ellipse(60% 100% at 50% 100%)}
+  .badge{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);
+    padding:.35rem 1rem;border-radius:99px;font-size:.85rem;margin-bottom:1.2rem}
+  .hero h1{font-size:clamp(2rem,5.5vw,3.8rem);line-height:1.15;margin-bottom:1rem}
+  .hero h1 em{font-style:normal;color:var(--dorado)}
+  .hero p{max-width:640px;margin:0 auto 2rem;font-size:1.1rem;opacity:.92}
+  .btn{display:inline-block;padding:.85rem 1.8rem;border-radius:99px;font-weight:600;transition:.25s}
+  .btn-primary{background:var(--dorado);color:var(--azul);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+  .btn-ghost{border:2px solid rgba(255,255,255,.6);margin-left:.6rem}
+  .btn-ghost:hover{background:rgba(255,255,255,.15)}
+
+  /* SECCIONES */
+  section{max-width:1100px;margin:auto;padding:4rem 1.2rem}
+  .titulo{text-align:center;margin-bottom:2.5rem}
+  .titulo h2{font-size:clamp(1.6rem,3.5vw,2.3rem);color:var(--azul)}
+  .titulo h2::after{content:"";display:block;width:70px;height:4px;background:var(--dorado);border-radius:4px;margin:.6rem auto 0}
+  .titulo p{color:var(--suave);margin-top:.8rem}
+
+  /* MENSAJE */
+  .mensaje{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center}
+  .mensaje blockquote{background:#fff;border-left:6px solid var(--dorado);padding:1.6rem;border-radius:14px;box-shadow:var(--sombra);font-size:1.05rem}
+  .mensaje blockquote footer{margin-top:1rem;font-weight:600;color:var(--azul)}
+  .lema{background:linear-gradient(135deg,var(--azul),var(--azul-2));color:#fff;border-radius:14px;padding:2rem;text-align:center;box-shadow:var(--sombra)}
+  .lema h3{color:var(--dorado);margin-bottom:.5rem;letter-spacing:1px;text-transform:uppercase;font-size:.9rem}
+  .lema p{font-size:1.4rem;font-weight:600}
+  @media(max-width:760px){.mensaje{grid-template-columns:1fr}}
+
+  /* VALORES */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem}
+  .card{background:#fff;border-radius:16px;padding:1.6rem;box-shadow:var(--sombra);transition:.25s;border-top:4px solid transparent}
+  .card:hover{transform:translateY(-6px);border-color:var(--dorado)}
+  .card .ico{font-size:2rem;margin-bottom:.6rem}
+  .card h3{color:var(--azul);margin-bottom:.4rem}
+  .card p{color:var(--suave);font-size:.95rem}
+
+  /* CIFRAS */
+  .cifras{background:var(--azul);color:#fff;max-width:none;border-radius:0}
+  .cifras .grid{max-width:1100px;margin:auto;text-align:center}
+  .cifras strong{display:block;font-size:2.4rem;color:var(--dorado)}
+  .cifras span{opacity:.9}
+
+  /* PASOS */
+  .pasos{counter-reset:p;display:grid;gap:1rem;max-width:760px;margin:auto}
+  .paso{counter-increment:p;display:flex;gap:1rem;align-items:flex-start;background:#fff;padding:1.2rem 1.4rem;border-radius:14px;box-shadow:var(--sombra)}
+  .paso::before{content:counter(p);flex:none;width:38px;height:38px;border-radius:50%;background:var(--dorado);color:var(--azul);display:grid;place-items:center;font-weight:800}
+  .paso h4{color:var(--azul)}
+  .paso p{color:var(--suave);font-size:.95rem}
+
+  /* CONTACTO */
+  .contacto{background:#fff;border-radius:18px;box-shadow:var(--sombra);padding:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem;text-align:center}
+  .contacto h4{color:var(--azul);margin-bottom:.2rem}
+  .contacto p{color:var(--suave);font-size:.95rem}
+
+  footer{background:var(--azul);color:#cfd8ee;text-align:center;padding:2rem 1rem;font-size:.9rem}
+  footer b{color:var(--dorado)}
+
+  /* animación de entrada */
+  .reveal{opacity:0;transform:translateY(24px);animation:in .8s forwards}
+  @keyframes in{to{opacity:1;transform:none}}
+  .d1{animation-delay:.1s}.d2{animation-delay:.3s}.d3{animation-delay:.5s}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#inicio" class="logo"><span class="mark">UAB</span> Universidad Adventista de Bolivia</a>
+    <nav>
+      <ul>
+        <li><a href="#mensaje">Mensaje</a></li>
+        <li><a href="#valores">Valores</a></li>
+        <li><a href="#pasos">Primeros pasos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="badge reveal">Gestión académica 2026</div>
+    <h1 class="reveal d1">¡Bienvenidos a la <em>Universidad Adventista de Bolivia</em>!</h1>
+    <p class="reveal d2">Hoy comienza una etapa de crecimiento académico, personal y espiritual. Nos alegra que seas parte de nuestra familia universitaria.</p>
+    <div class="reveal d3">
+      <a href="#pasos" class="btn btn-primary">Comenzar</a>
+      <a href="#valores" class="btn btn-ghost">Conoce nuestros valores</a>
+    </div>
+  </div>
+
+  <section id="mensaje">
+    <div class="titulo">
+      <h2>Un mensaje para ti</h2>
+      <p>Estudiar aquí es más que obtener un título.</p>
+    </div>
+    <div class="mensaje">
+      <blockquote>
+        Querido estudiante: te damos la más cordial bienvenida. Aquí encontrarás docentes comprometidos,
+        un ambiente de respeto y las herramientas para formarte con excelencia, servicio y fe.
+        Aprovecha cada clase, cada proyecto y cada amistad. ¡Estamos para acompañarte!
+        <footer>— Comunidad universitaria UAB</footer>
+      </blockquote>
+      <div class="lema">
+        <h3>Formación integral</h3>
+        <p>Mente, cuerpo y espíritu al servicio de Dios y de la sociedad.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="valores">
+    <div class="titulo">
+      <h2>Lo que nos identifica</h2>
+      <p>Principios que guían nuestra vida universitaria.</p>
+    </div>
+    <div class="grid">
+      <article class="card"><div class="ico">📖</div><h3>Excelencia académica</h3><p>Aprendizaje riguroso, actualizado y orientado a resolver problemas reales.</p></article>
+      <article class="card"><div class="ico">🙏</div><h3>Fe y valores</h3><p>Una educación cristiana basada en la integridad, la honestidad y el respeto.</p></article>
+      <article class="card"><div class="ico">🤝</div><h3>Servicio</h3><p>Formamos profesionales que contribuyen al bienestar de su comunidad.</p></article>
+      <article class="card"><div class="ico">🌱</div><h3>Vida saludable</h3><p>Equilibrio entre estudio, descanso, deporte y relaciones sanas.</p></article>
+    </div>
+  </section>
+
+  <section class="cifras" aria-label="Razones para estudiar">
+    <div class="grid">
+      <div><strong>+</strong><span>Docentes cercanos</span></div>
+      <div><strong>100%</strong><span>Compromiso formativo</span></div>
+      <div><strong>1</strong><span>Gran comunidad</span></div>
+      <div><strong>∞</strong><span>Oportunidades de crecer</span></div>
+    </div>
+  </section>
+
+  <section id="pasos">
+    <div class="titulo">
+      <h2>Tus primeros pasos</h2>
+      <p>Una guía rápida para comenzar con buen pie.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso"><div><h4>Revisa tu horario y plan de estudios</h4><p>Conoce tus materias, aulas y docentes de la gestión.</p></div></div>
+      <div class="paso"><div><h4>Reúnete con tu director de carrera</h4><p>Resuelve dudas sobre contenidos, evaluaciones y reglamentos.</p></div></div>
+      <div class="paso"><div><h4>Conoce el campus y sus servicios</h4><p>Biblioteca, laboratorios, cafetería y espacios de estudio.</p></div></div>
+      <div class="paso"><div><h4>Participa en la vida estudiantil</h4><p>Actividades culturales, deportivas y espirituales para integrarte.</p></div></div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="titulo">
+      <h2>¿Necesitas ayuda?</h2>
+      <p>Nuestro equipo está disponible para orientarte.</p>
+    </div>
+    <div class="contacto">
+      <div><h4>📍 Ubicación</h4><p>Campus UAB, Bolivia</p></div>
+      <div><h4>📞 Teléfono</h4><p>Completa con el número oficial</p></div>
+      <div><h4>✉️ Correo</h4><p>Completa con el correo oficial</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p><b>Universidad Adventista de Bolivia</b> · ¡Bienvenido a tu nueva casa de estudios!</p>
+  <p>© 2026 · Página de bienvenida para estudiantes</p>
+</footer>
+
+</body>
+</html>
