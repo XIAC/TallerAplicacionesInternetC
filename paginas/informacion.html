@@ -1,3 +1,140 @@
-<p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam eius labore ex corrupti sit eveniet cum eligendi, dolor magni inventore consequatur at commodi quam! Amet nemo dolores unde esse!
-</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Información - Taller de Apps Internet</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+  <script>
+    // Aplica el tema guardado antes de pintar la página (evita parpadeo)
+    try { document.documentElement.setAttribute("data-theme", localStorage.getItem("tema") || "dark"); } catch (e) {}
+  </script>
+  <style>
+    :root[data-theme="dark"] {
+      --fondo: #0f1623; --header: #1b2535; --tarjeta: #182131; --borde: #2a374d;
+      --texto: #e8edf5; --texto-suave: #9fb0c8; --acento: #3b82f6; --acento-texto: #ffffff;
+    }
+    :root[data-theme="light"] {
+      --fondo: #f3f5f8; --header: #1b2535; --tarjeta: #ffffff; --borde: #dde3ec;
+      --texto: #1d2733; --texto-suave: #5a6a80; --acento: #2563eb; --acento-texto: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.6;
+      background: var(--fondo); color: var(--texto); transition: background .25s, color .25s;
+    }
+    header { background: var(--header); color: #fff; text-align: center; padding: 22px 16px; }
+    header h1 { margin: 0 0 10px; font-size: 2rem; }
+    nav { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+    nav a { color: #fff; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+    nav a:hover, nav a.activo { border-bottom-color: var(--acento); }
+    #btn-tema {
+      background: transparent; color: #fff; border: 1px solid #4a5b78; border-radius: 20px;
+      padding: 4px 14px; cursor: pointer; font-size: .9rem;
+    }
+    #btn-tema:hover { background: #2a374d; }
+    main { max-width: 900px; margin: 36px auto; padding: 0 16px; }
+    .caja {
+      background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px;
+      padding: 28px 32px; margin-bottom: 22px;
+    }
+    h2 { margin: 0 0 10px; font-size: 1.5rem; }
+    h3 { margin: 0 0 6px; font-size: 1.1rem; }
+    p { margin: 0 0 10px; color: var(--texto-suave); max-width: 70ch; }
+    .rejilla { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .rejilla .caja { margin: 0; padding: 22px; }
+    ul { margin: 0; padding-left: 20px; color: var(--texto-suave); }
+    li { margin-bottom: 6px; }
+    code { background: var(--fondo); border: 1px solid var(--borde); border-radius: 6px; padding: 1px 7px; color: var(--texto); }
+    .boton {
+      display: inline-block; background: var(--acento); color: var(--acento-texto);
+      padding: 11px 24px; border-radius: 8px; text-decoration: none; margin-top: 8px;
+    }
+    .boton:hover { filter: brightness(1.1); }
+    footer { background: var(--header); color: #fff; text-align: center; padding: 22px; margin-top: 40px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Taller de Apps Internet</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="estudiantes.html">Estudiantes</a>
+      <a href="registrar.html">Registrar</a>
+      <a href="informacion.html" class="activo">Información</a>
+      <button id="btn-tema" type="button" aria-label="Cambiar entre modo oscuro y claro">☀️ Modo claro</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="caja">
+      <h2>Sobre el sistema</h2>
+      <p>Este sistema web permite gestionar la información básica de los estudiantes: registrarlos, consultarlos en una lista y mantener sus datos actualizados.</p>
+      <p>Fue desarrollado como práctica de la materia Taller de Aplicaciones en Internet, usando únicamente tecnologías del lado del cliente.</p>
+    </section>
+
+    <section class="rejilla">
+      <article class="caja">
+        <h3>Consultar</h3>
+        <p>Revisa la lista de estudiantes registrados desde la página <strong>Estudiantes</strong>.</p>
+      </article>
+      <article class="caja">
+        <h3>Registrar</h3>
+        <p>Agrega un nuevo estudiante con su nombre, correo, carrera y semestre.</p>
+      </article>
+      <article class="caja">
+        <h3>Administrar</h3>
+        <p>Edita o elimina los datos de un estudiante cuando cambien.</p>
+      </article>
+    </section>
+
+    <section class="caja" style="margin-top:22px">
+      <h2>Tecnologías utilizadas</h2>
+      <ul>
+        <li><strong>HTML5</strong> para la estructura de las páginas.</li>
+        <li><strong>CSS3</strong> para el diseño, con variables de color para el modo oscuro y claro.</li>
+        <li><strong>JavaScript</strong> para la lógica del formulario y la lista de estudiantes.</li>
+        <li><strong>localStorage</strong> para guardar los datos en el navegador, sin servidor.</li>
+      </ul>
+    </section>
+
+    <section class="caja">
+      <h2>Estructura del proyecto</h2>
+      <ul>
+        <li><code>index.html</code>: página de inicio.</li>
+        <li><code>paginas/</code>: estudiantes, registrar e información.</li>
+        <li><code>css/estilos.css</code>: estilos generales.</li>
+        <li><code>js/</code>: <code>app.js</code> y <code>estudiantes.js</code>.</li>
+      </ul>
+    </section>
+
+    <section class="caja">
+      <h2>Modo oscuro y claro</h2>
+      <p>Usa el botón de la barra de navegación para cambiar el tema. Tu elección se guarda y se mantiene al cambiar de página.</p>
+      <a class="boton" href="registrar.html">Registrar un estudiante</a>
+    </section>
+  </main>
+
+  <footer>Taller Apps Internet © 2026</footer>
+
+  <script>
+    const raiz = document.documentElement;
+    const boton = document.getElementById("btn-tema");
+
+    function actualizarBoton() {
+      boton.textContent = raiz.getAttribute("data-theme") === "dark" ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    }
+
+    boton.addEventListener("click", () => {
+      const nuevo = raiz.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      raiz.setAttribute("data-theme", nuevo);
+      try { localStorage.setItem("tema", nuevo); } catch (e) {}
+      actualizarBoton();
+    });
+
+    actualizarBoton();
+  </script>
+</body>
+</html>

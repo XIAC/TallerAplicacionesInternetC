@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar - Taller de Apps Internet</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+  <script>
+    // Aplica el tema guardado antes de pintar la página (evita parpadeo)
+    try { document.documentElement.setAttribute("data-theme", localStorage.getItem("tema") || "dark"); } catch (e) {}
+  </script>
+  <style>
+    :root[data-theme="dark"] {
+      --fondo: #0f1623; --header: #1b2535; --tarjeta: #182131; --borde: #2a374d; --campo: #0f1623;
+      --texto: #e8edf5; --texto-suave: #9fb0c8; --acento: #3b82f6; --acento-texto: #ffffff;
+      --ok: #34d399; --error: #f87171;
+    }
+    :root[data-theme="light"] {
+      --fondo: #f3f5f8; --header: #1b2535; --tarjeta: #ffffff; --borde: #dde3ec; --campo: #f8fafc;
+      --texto: #1d2733; --texto-suave: #5a6a80; --acento: #2563eb; --acento-texto: #ffffff;
+      --ok: #15803d; --error: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.6;
+      background: var(--fondo); color: var(--texto); transition: background .25s, color .25s;
+    }
+    header { background: var(--header); color: #fff; text-align: center; padding: 22px 16px; }
+    header h1 { margin: 0 0 10px; font-size: 2rem; }
+    nav { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+    nav a { color: #fff; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+    nav a:hover, nav a.activo { border-bottom-color: var(--acento); }
+    #btn-tema {
+      background: transparent; color: #fff; border: 1px solid #4a5b78; border-radius: 20px;
+      padding: 4px 14px; cursor: pointer; font-size: .9rem;
+    }
+    #btn-tema:hover { background: #2a374d; }
+    main { max-width: 680px; margin: 36px auto; padding: 0 16px; }
+    .caja {
+      background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 14px; padding: 30px 32px;
+    }
+    h2 { margin: 0 0 6px; font-size: 1.5rem; }
+    .intro { margin: 0 0 22px; color: var(--texto-suave); }
+    .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .campo { margin-bottom: 16px; display: flex; flex-direction: column; }
+    label { font-size: .95rem; margin-bottom: 5px; }
+    input, select {
+      font: inherit; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--borde);
+      background: var(--campo); color: var(--texto);
+    }
+    input::placeholder { color: var(--texto-suave); opacity: .7; }
+    input:focus, select:focus { outline: 2px solid var(--acento); border-color: var(--acento); }
+    input.invalido, select.invalido { border-color: var(--error); }
+    .error { color: var(--error); font-size: .85rem; min-height: 1.1em; margin-top: 3px; }
+    .acciones { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+    button.principal, button.secundario {
+      font: inherit; padding: 11px 24px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+    }
+    button.principal { background: var(--acento); color: var(--acento-texto); }
+    button.principal:hover { filter: brightness(1.1); }
+    button.secundario { background: transparent; color: var(--texto); border-color: var(--borde); }
+    button.secundario:hover { background: var(--campo); }
+    #mensaje { margin-top: 18px; font-weight: 600; color: var(--ok); min-height: 1.4em; }
+    footer { background: var(--header); color: #fff; text-align: center; padding: 22px; margin-top: 40px; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+    @media (max-width: 560px) { .fila { grid-template-columns: 1fr; } .caja { padding: 22px 18px; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Taller de Apps Internet</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="estudiantes.html">Estudiantes</a>
+      <a href="registrar.html" class="activo">Registrar</a>
+      <a href="informacion.html">Información</a>
+      <button id="btn-tema" type="button" aria-label="Cambiar entre modo oscuro y claro">☀️ Modo claro</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="caja">
+      <h2>Registrar estudiante</h2>
+      <p class="intro">Completa los datos para agregar un nuevo estudiante a la lista.</p>
+
+      <form id="form-registro" novalidate>
+        <div class="fila">
+          <div class="campo">
+            <label for="nombre">Nombres</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Carlos">
+            <span class="error" id="error-nombre"></span>
+          </div>
+          <div class="campo">
+            <label for="apellido">Apellidos</label>
+            <input type="text" id="apellido" placeholder="Ej: Pérez Rojas">
+            <span class="error" id="error-apellido"></span>
+          </div>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="codigo">Código o CI</label>
+            <input type="text" id="codigo" placeholder="Ej: 12345678">
+            <span class="error" id="error-codigo"></span>
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="Ej: 71234567">
+            <span class="error" id="error-telefono"></span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" placeholder="nombre@correo.com">
+          <span class="error" id="error-correo"></span>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="carrera">Carrera</label>
+            <select id="carrera">
+              <option value="">Selecciona una carrera</option>
+              <option>Ingeniería de Sistemas</option>
+              <option>Ingeniería Industrial</option>
+              <option>Ingeniería Civil</option>
+              <option>Ingeniería Electrónica</option>
+              <option>Otra</option>
+            </select>
+            <span class="error" id="error-carrera"></span>
+          </div>
+          <div class="campo">
+            <label for="semestre">Semestre</label>
+            <select id="semestre">
+              <option value="">Selecciona un semestre</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+            </select>
+            <span class="error" id="error-semestre"></span>
+          </div>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" class="principal">Guardar estudiante</button>
+          <button type="reset" class="secundario" id="btn-limpiar">Limpiar</button>
+        </div>
+        <p id="mensaje" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>Taller Apps Internet © 2026</footer>
+
+  <script>
+    /* ---------- Tema oscuro / claro ---------- */
+    const raiz = document.documentElement;
+    const botonTema = document.getElementById("btn-tema");
+
+    function actualizarBoton() {
+      botonTema.textContent = raiz.getAttribute("data-theme") === "dark" ? "☀️ Modo claro" : "🌙 Modo oscuro";
+    }
+    botonTema.addEventListener("click", () => {
+      const nuevo = raiz.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      raiz.setAttribute("data-theme", nuevo);
+      try { localStorage.setItem("tema", nuevo); } catch (e) {}
+      actualizarBoton();
+    });
+    actualizarBoton();
+
+    /* ---------- Formulario de registro ---------- */
+    const form = document.getElementById("form-registro");
+    const mensaje = document.getElementById("mensaje");
+    const campos = ["nombre", "apellido", "codigo", "telefono", "correo", "carrera", "semestre"];
+
+    function mostrarError(id, texto) {
+      document.getElementById("error-" + id).textContent = texto;
+      document.getElementById(id).classList.toggle("invalido", texto !== "");
+    }
+
+    function validar() {
+      let valido = true;
+      const v = id => document.getElementById(id).value.trim();
+
+      campos.forEach(id => mostrarError(id, ""));
+
+      if (v("nombre").length < 2)   { mostrarError("nombre", "Escribe el nombre."); valido = false; }
+      if (v("apellido").length < 2) { mostrarError("apellido", "Escribe el apellido."); valido = false; }
+      if (!/^[0-9A-Za-z-]{5,}$/.test(v("codigo"))) { mostrarError("codigo", "Mínimo 5 caracteres, sin espacios."); valido = false; }
+      if (!/^[0-9]{7,10}$/.test(v("telefono")))    { mostrarError("telefono", "Solo números, entre 7 y 10 dígitos."); valido = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("correo"))) { mostrarError("correo", "Escribe un correo válido."); valido = false; }
+      if (v("carrera") === "")  { mostrarError("carrera", "Selecciona una carrera."); valido = false; }
+      if (v("semestre") === "") { mostrarError("semestre", "Selecciona un semestre."); valido = false; }
+
+      return valido;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      mensaje.textContent = "";
+      if (!validar()) return;
+
+      const estudiante = {};
+      campos.forEach(id => estudiante[id] = document.getElementById(id).value.trim());
+
+      let lista = [];
+      try { lista = JSON.parse(localStorage.getItem("estudiantes")) || []; } catch (err) {}
+
+      if (lista.some(x => x.codigo === estudiante.codigo)) {
+        mostrarError("codigo", "Ya existe un estudiante con ese código.");
+        return;
+      }
+
+      lista.push(estudiante);
+      try { localStorage.setItem("estudiantes", JSON.stringify(lista)); } catch (err) {}
+
+      form.reset();
+      mensaje.textContent = "Estudiante guardado. Ya aparece en la lista de Estudiantes.";
+    });
+
+    document.getElementById("btn-limpiar").addEventListener("click", () => {
+      campos.forEach(id => mostrarError(id, ""));
+      mensaje.textContent = "";
+    });
+  </script>
+</body>
+</html>
