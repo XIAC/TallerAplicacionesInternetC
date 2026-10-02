@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Estudiante - Taller de Apps Internet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            margin: 0 0 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .contenedor {
+            max-width: 500px;
+            background-color: #ffffff;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contenedor h2 {
+            margin-top: 0;
+            color: #1e293b;
+            text-align: center;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .campo input, .campo select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .botones {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-guardar {
+            flex: 2;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .btn-guardar:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-atras {
+            flex: 1;
+            background-color: #64748b;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .btn-atras:hover {
+            background-color: #475569;
+        }
+
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Taller de Apps Internet</h1>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html">Registrar</a>
+            <a href="informacion.html">Información</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <h2>Registrar Nuevo Estudiante</h2>
+        
+        <form action="estudiantes.html" method="GET">
+            <div class="campo">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan" required>
+            </div>
+
+            <div class="campo">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ej. Pérez" required>
+            </div>
+
+            <div class="campo">
+                <label for="carrera">Carrera:</label>
+                <select id="carrera" name="carrera" required>
+                    <option value="">-- Seleccione una carrera --</option>
+                    <option value="Sistemas">Ingeniería de Sistemas</option>
+                    <option value="Informatica">Ingeniería Informática</option>
+                    <option value="Redes">Ingeniería en Redes</option>
+                </select>
+            </div>
+
+            <div class="botones">
+                <button type="submit" class="btn-guardar">Guardar Estudiante</button>
+                <a href="../index.html" class="btn-atras">Volver al Inicio</a>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        Taller Apps Internet © 2026
+    </footer>
+
+</body>
+</html>
