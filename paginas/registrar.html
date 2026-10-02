@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Estudiante</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>Taller de Apps Internet</h1>
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html">Registrar</a>
+            <a href="informacion.html">Información</a>
+        </nav>
+    </header>
+
+    <main style="max-width: 600px; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h2>Formulario de Registro</h2>
+        <form action="#" method="POST">
+            <div style="margin-bottom: 15px;">
+                <label for="nombre" style="display: block; margin-bottom: 5px; font-weight: bold;">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="apellido" style="display: block; margin-bottom: 5px; font-weight: bold;">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingrese el apellido" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="carrera" style="display: block; margin-bottom: 5px; font-weight: bold;">Carrera:</label>
+                <input type="text" id="carrera" name="carrera" placeholder="Ej. Ingeniería de Sistemas" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+            </div>
+
+            <button type="submit" style="background-color: #0d6efd; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Guardar Estudiante</button>
+        </form>
+    </main>
+
+</body>
+</html>
