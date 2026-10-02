@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario para registrar o editar estudiantes">
+    <title>Registrar estudiante</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Registrar Estudiante</h1>
+        <nav aria-label="Principal">
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html" aria-current="page">Registrar</a>
+            <a href="informacion.html">Información</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <h2 id="titulo">Nuevo estudiante</h2>
+
+        <form id="formulario" class="formulario" novalidate>
+            <div class="campo">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required minlength="2" autocomplete="given-name">
+            </div>
+
+            <div class="campo">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" name="apellido" required minlength="2" autocomplete="family-name">
+            </div>
+
+            <div class="campo">
+                <label for="carrera">Carrera</label>
+                <select id="carrera" name="carrera" required>
+                    <option value="">Selecciona una carrera</option>
+                    <option>Ingeniería de Sistemas</option>
+                    <option>Ingeniería Informática</option>
+                    <option>Ingeniería Electrónica</option>
+                    <option>Ingeniería Industrial</option>
+                </select>
+            </div>
+
+            <div class="botones">
+                <button type="submit" id="guardar">Guardar estudiante</button>
+                <a href="estudiantes.html" class="boton boton-secundario">Cancelar</a>
+            </div>
+
+            <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema de Estudiantes</p>
+    </footer>
+
+    <script src="../js/estudiantes.js"></script>
+    <script>
+        const form = document.getElementById("formulario");
+        const mensaje = document.getElementById("mensaje");
+        const idEditar = Number(new URLSearchParams(location.search).get("id")) || null;
+
+        // Modo edición: precarga los datos
+        if (idEditar) {
+            const existente = obtenerEstudiantes().find(e => e.id === idEditar);
+            if (existente) {
+                document.getElementById("titulo").textContent = "Editar estudiante";
+                document.getElementById("guardar").textContent = "Guardar cambios";
+                form.nombre.value = existente.nombre;
+                form.apellido.value = existente.apellido;
+                form.carrera.value = existente.carrera;
+            }
+        }
+
+        form.addEventListener("submit", ev => {
+            ev.preventDefault();
+            const nombre = form.nombre.value.trim();
+            const apellido = form.apellido.value.trim();
+            const carrera = form.carrera.value;
+
+            if (nombre.length < 2 || apellido.length < 2 || !carrera) {
+                mensaje.textContent = "Completa nombre, apellido y carrera (mínimo 2 letras en los nombres).";
+                mensaje.className = "mensaje error";
+                return;
+            }
+
+            const lista = obtenerEstudiantes();
+            const existente = idEditar && lista.find(e => e.id === idEditar);
+
+            if (existente) {
+                Object.assign(existente, { nombre, apellido, carrera });
+            } else {
+                lista.push({ id: siguienteId(lista), nombre, apellido, carrera });
+            }
+
+            guardarEstudiantes(lista);
+            mensaje.textContent = "Estudiante guardado. Redirigiendo...";
+            mensaje.className = "mensaje ok";
+            setTimeout(() => { location.href = "estudiantes.html"; }, 800);
+        });
+    </script>
+
+</body>
+
+</html>
