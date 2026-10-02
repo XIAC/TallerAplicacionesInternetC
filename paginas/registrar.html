@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar Estudiante</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Registrar Nuevo Estudiante</h1>
+
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html">Registrar</a>
+            <a href="informacion.html">Información</a>
+        </nav>
+
+    </header>
+
+    <main class="contenedor">
+
+        <section class="formulario-registro">
+            <h2>Completa los datos</h2>
+            
+            <form id="formEstudiante">
+                <div class="grupo-form">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan" required>
+                </div>
+
+                <div class="grupo-form">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Ej. Pérez" required>
+                </div>
+
+                <div class="grupo-form">
+                    <label for="carrera">Carrera:</label>
+                    <input type="text" id="carrera" name="carrera" placeholder="Ej. Ingeniería" required>
+                </div>
+
+                <button type="submit" class="boton btn-submit">Registrar Estudiante</button>
+            </form>
+        </section>
+
+    </main>
+
+    <script src="../js/estudiantes.js"></script>
+</body>
+
+</html>
