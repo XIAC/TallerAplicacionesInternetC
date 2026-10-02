@@ -1,3 +1,120 @@
-<p>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quibusdam eius labore ex corrupti sit eveniet cum eligendi, dolor magni inventore consequatur at commodi quam! Amet nemo dolores unde esse!
-</p>
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información de la Carrera</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            background-color: #f2f2f2;
+        }
+
+        .contenedor {
+            max-width: 700px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .botones {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .informacion {
+            display: none;
+            padding: 15px;
+            margin-top: 10px;
+            background-color: #eeeeee;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Información de la Carrera</h1>
+
+        <p>
+            En esta sección se presenta información sobre la carrera
+            de Ingeniería de Sistemas y las actividades que pueden
+            realizar sus estudiantes.
+        </p>
+
+        <div class="botones">
+            <button onclick="mostrarInformacion('carrera')">
+                Sobre la carrera
+            </button>
+
+            <button onclick="mostrarInformacion('actividades')">
+                Actividades
+            </button>
+
+            <button onclick="mostrarInformacion('perfil')">
+                Perfil profesional
+            </button>
+        </div>
+
+        <div id="carrera" class="informacion">
+            <h2>Sobre la carrera</h2>
+            <p>
+                Ingeniería de Sistemas permite aprender sobre programación,
+                bases de datos, desarrollo de aplicaciones y tecnologías
+                de información.
+            </p>
+        </div>
+
+        <div id="actividades" class="informacion">
+            <h2>Actividades</h2>
+            <p>
+                Los estudiantes pueden desarrollar proyectos, aplicaciones
+                web y diferentes soluciones utilizando tecnologías actuales.
+            </p>
+        </div>
+
+        <div id="perfil" class="informacion">
+            <h2>Perfil profesional</h2>
+            <p>
+                El profesional puede participar en el desarrollo,
+                mantenimiento y administración de sistemas informáticos.
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        function mostrarInformacion(id) {
+
+            const secciones = document.querySelectorAll(".informacion");
+
+            secciones.forEach(function(seccion) {
+                seccion.style.display = "none";
+            });
+
+            document.getElementById(id).style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
+```
