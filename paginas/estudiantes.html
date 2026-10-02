@@ -4,74 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Lista de estudiantes registrados">
     <title>Estudiantes</title>
-
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 
 <body>
 
     <header>
-
         <h1>Lista de Estudiantes</h1>
-
-        <nav>
+        <nav aria-label="Principal">
             <a href="../index.html">Inicio</a>
-            <a href="estudiantes.html">Estudiantes</a>
+            <a href="estudiantes.html" aria-current="page">Estudiantes</a>
             <a href="registrar.html">Registrar</a>
             <a href="informacion.html">Información</a>
         </nav>
-
     </header>
 
     <main class="contenedor">
-
         <h2>Estudiantes registrados</h2>
 
-        <br>
-
-        <table border="1" width="100%" cellpadding="10">
-
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Carrera</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody id="tablaEstudiantes">
-
-                <tr>
-                    <td>1</td>
-                    <td>Juan</td>
-                    <td>Pérez</td>
-                    <td>Ingeniería de Sistemas</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>María</td>
-                    <td>Gómez</td>
-                    <td>Ingeniería Informática</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
+        <div class="tabla-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Carrera</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaEstudiantes"></tbody>
+            </table>
+        </div>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema de Estudiantes</p>
+    </footer>
+
+    <script src="../js/estudiantes.js"></script>
+    <script>
+        const tbody = document.getElementById("tablaEstudiantes");
+
+        function dibujarTabla() {
+            const lista = obtenerEstudiantes();
+            tbody.innerHTML = "";
+
+            if (lista.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="vacio">No hay estudiantes registrados.</td></tr>';
+                return;
+            }
+
+            lista.forEach(e => {
+                const fila = tbody.insertRow();
+                [e.id, e.nombre, e.apellido, e.carrera].forEach(valor => {
+                    fila.insertCell().textContent = valor; // textContent evita inyección de HTML
+                });
+
+                const celda = fila.insertCell();
+                celda.className = "acciones";
+
+                const editar = document.createElement("button");
+                editar.textContent = "Editar";
+                editar.className = "boton-secundario";
+                editar.addEventListener("click", () => {
+                    location.href = "registrar.html?id=" + e.id;
+                });
+
+                const eliminar = document.createElement("button");
+                eliminar.textContent = "Eliminar";
+                eliminar.className = "boton-peligro";
+                eliminar.addEventListener("click", () => {
+                    if (confirm("¿Eliminar a " + e.nombre + " " + e.apellido + "?")) {
+                        guardarEstudiantes(obtenerEstudiantes().filter(x => x.id !== e.id));
+                        dibujarTabla();
+                    }
+                });
+
+                celda.append(editar, " ", eliminar);
+            });
+        }
+
+        dibujarTabla();
+    </script>
 
 </body>
 
