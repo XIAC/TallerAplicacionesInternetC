@@ -85,3 +85,78 @@ footer {
     background-color: #1f2937;
     color: white;
 }
+/* =========================================
+   ESTILOS AGREGADOS POR: Teodocio Ali
+   ========================================= */
+/* 1. Estilos para Tablas (Estudiantes e Información) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+th {
+    background-color: #1f2937;
+    color: white;
+    font-weight: bold;
+}
+tr:hover {
+    background-color: #f8fafc;
+}
+/* 2. Estilos para Botones de acción en tablas */
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+button:hover {
+    background-color: #1d4ed8;
+}
+/* 3. Estilos para la página de Información */
+.seccion-info {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.seccion-info h2 {
+    color: #1f2937;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 5px;
+    display: inline-block;
+}
+.lista {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+.lista li {
+    margin-bottom: 10px;
+    color: #4b5563;
+}
+/* 4. Estilo para la sección suelta en el Index (Lorem ipsum) */
+.info-extra {
+    background-color: #e0e7ff;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 1100px;
+    text-align: center;
+    color: #3730a3;
+    font-style: italic;
+    border-left: 5px solid #2563eb;
+}
