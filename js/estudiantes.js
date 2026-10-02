@@ -1,28 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-    const formulario = document.getElementById("formEstudiante");
+const CLAVE = "estudiantes";
 
-    if (formulario) {
+function obtenerEstudiantes() {
+    try {
+        const datos = JSON.parse(localStorage.getItem(CLAVE));
+        if (Array.isArray(datos)) return datos;
+    } catch (e) { /* datos dañados: se reinician */ }
+    const iniciales = [
+        { id: 1, nombre: "Juan", apellido: "Pérez", carrera: "Ingeniería de Sistemas" },
+        { id: 2, nombre: "María", apellido: "Gómez", carrera: "Ingeniería Informática" }
+    ];
+    guardarEstudiantes(iniciales);
+    return iniciales;
+}
 
-        formulario.addEventListener("submit", function (event) {
+function guardarEstudiantes(lista) {
+    localStorage.setItem(CLAVE, JSON.stringify(lista));
+}
 
-            event.preventDefault();
-
-            const nombre = document.getElementById("nombre").value;
-            const apellido = document.getElementById("apellido").value;
-            const carrera = document.getElementById("carrera").value;
-
-            alert(
-                "Estudiante registrado:\n\n" +
-                nombre + " " +
-                apellido + "\n" +
-                carrera
-            );
-
-            formulario.reset();
-
-        });
-
-    }
-
-});
+function siguienteId(lista) {
+    return lista.reduce((max, e) => Math.max(max, e.id), 0) + 1;
+}
