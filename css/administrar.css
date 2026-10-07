@@ -1,0 +1,195 @@
+/* Aporte de Vladimir Condori: estilos de la página Administrar */
+
+[hidden] {
+    display: none !important;
+}
+
+nav a.activo {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ---------- Resumen ---------- */
+.resumen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.dato {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid #2563eb;
+}
+
+.dato strong {
+    display: block;
+    font-size: 2.2rem;
+    color: #2563eb;
+}
+
+.dato span {
+    color: #6b7280;
+}
+
+/* ---------- Paneles ---------- */
+.panel {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.panel h2 {
+    margin-bottom: 15px;
+}
+
+.panel-cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.panel-cabecera h2 {
+    margin-bottom: 0;
+}
+
+.campo {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font: inherit;
+}
+
+.campo:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 1px;
+    border-color: #2563eb;
+}
+
+.panel-cabecera .campo {
+    max-width: 320px;
+}
+
+/* ---------- Tabla ---------- */
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+.tabla-admin {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-admin th,
+.tabla-admin td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabla-admin th {
+    background-color: #f3f4f6;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #4b5563;
+}
+
+.tabla-admin tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.celda-acciones {
+    white-space: nowrap;
+}
+
+.boton-accion {
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-right: 6px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.boton-accion.editar {
+    background-color: #2563eb;
+}
+
+.boton-accion.eliminar {
+    background-color: #dc2626;
+}
+
+.boton-accion:hover {
+    opacity: 0.85;
+}
+
+.vacio {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px 0;
+}
+
+.estado {
+    min-height: 1.5em;
+    margin: 15px 0;
+    color: #15803d;
+}
+
+/* ---------- Botones y formulario ---------- */
+button.boton {
+    border: none;
+    cursor: pointer;
+    font: inherit;
+}
+
+.boton-secundario {
+    background-color: #6b7280;
+}
+
+.fila-form {
+    margin-bottom: 15px;
+}
+
+.fila-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.error {
+    color: #dc2626;
+    min-height: 1.5em;
+    margin-bottom: 10px;
+}
+
+.acciones-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ---------- Celulares ---------- */
+@media (max-width: 600px) {
+    .panel {
+        padding: 20px;
+    }
+
+    .panel-cabecera .campo {
+        max-width: none;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px 8px;
+    }
+}

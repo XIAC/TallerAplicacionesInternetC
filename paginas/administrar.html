@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Aporte de Vladimir Condori: página para administrar estudiantes (buscar, editar y eliminar) -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Administración de estudiantes del Taller de Apps Internet">
+
+    <title>Administrar | Taller de Apps Internet</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/administrar.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Administrar Estudiantes</h1>
+
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html">Registrar</a>
+            <a href="informacion.html">Información</a>
+            <a href="administrar.html" class="activo">Administrar</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+
+        <!-- Resumen rápido -->
+        <section class="resumen" aria-label="Resumen de estudiantes">
+            <div class="dato">
+                <strong id="totalEstudiantes">0</strong>
+                <span>Estudiantes</span>
+            </div>
+            <div class="dato">
+                <strong id="totalCarreras">0</strong>
+                <span>Carreras</span>
+            </div>
+        </section>
+
+        <!-- Lista con buscador -->
+        <section class="panel">
+            <div class="panel-cabecera">
+                <h2>Estudiantes registrados</h2>
+                <input type="search" id="buscador" class="campo"
+                       placeholder="Buscar por nombre, apellido o carrera"
+                       aria-label="Buscar estudiante">
+            </div>
+
+            <div class="tabla-scroll">
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Carrera</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaAdmin"></tbody>
+                </table>
+            </div>
+
+            <p id="mensajeVacio" class="vacio" hidden>No se encontraron estudiantes.</p>
+            <p id="estado" class="estado" role="status" aria-live="polite"></p>
+
+            <button type="button" id="btnRestaurar" class="boton boton-secundario">
+                Restaurar datos de ejemplo
+            </button>
+        </section>
+
+        <!-- Formulario de edición (se muestra al pulsar "Editar") -->
+        <section class="panel" id="panelEditar" hidden>
+            <h2>Editar estudiante</h2>
+
+            <form id="formEditar" novalidate>
+                <input type="hidden" id="editId">
+
+                <div class="fila-form">
+                    <label for="editNombre">Nombre</label>
+                    <input type="text" id="editNombre" class="campo" required>
+                </div>
+
+                <div class="fila-form">
+                    <label for="editApellido">Apellido</label>
+                    <input type="text" id="editApellido" class="campo" required>
+                </div>
+
+                <div class="fila-form">
+                    <label for="editCarrera">Carrera</label>
+                    <input type="text" id="editCarrera" class="campo" list="listaCarreras" required>
+                    <datalist id="listaCarreras">
+                        <option value="Ingeniería de Sistemas">
+                        <option value="Ingeniería Informática">
+                        <option value="Ingeniería Comercial">
+                        <option value="Contaduría Pública">
+                        <option value="Administración de Empresas">
+                    </datalist>
+                </div>
+
+                <p id="errorEditar" class="error" role="alert"></p>
+
+                <div class="acciones-form">
+                    <button type="submit" class="boton">Guardar cambios</button>
+                    <button type="button" id="btnCancelar" class="boton boton-secundario">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Taller Apps Internet © 2026</p>
+    </footer>
+
+    <script src="../js/administrar.js"></script>
+
+</body>
+</html>
