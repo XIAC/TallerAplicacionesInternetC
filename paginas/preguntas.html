@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Preguntas frecuentes sobre Git y GitHub del Taller de Apps Internet">
+    <meta name="author" content="Jharol">
+
+    <title>Preguntas frecuentes | Taller de Apps Internet</title>
+
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Estilos propios de esta página (no modifican estilos.css para evitar conflictos) -->
+    <style>
+        .faq {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .faq h3 {
+            margin: 25px 0 10px;
+            color: #1f2937;
+        }
+
+        .faq h3:first-child {
+            margin-top: 0;
+        }
+
+        .faq details {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #f9fafb;
+        }
+
+        .faq summary {
+            cursor: pointer;
+            padding: 15px;
+            font-weight: bold;
+            list-style: none;
+        }
+
+        .faq summary::before {
+            content: "+ ";
+            color: #2563eb;
+        }
+
+        .faq details[open] summary::before {
+            content: "− ";
+        }
+
+        .faq details p {
+            padding: 0 15px 15px;
+            line-height: 1.5;
+        }
+
+        .faq code {
+            background-color: #1f2937;
+            color: #f9fafb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .buscador {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .sin-resultados {
+            display: none;
+            text-align: center;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Taller de Apps Internet</h1>
+
+        <nav>
+            <a href="../index.html">Inicio</a>
+            <a href="estudiantes.html">Estudiantes</a>
+            <a href="registrar.html">Registrar</a>
+            <a href="informacion.html">Información</a>
+            <a href="preguntas.html">Preguntas</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="bienvenida">
+            <h2>Preguntas frecuentes</h2>
+            <p>
+                Dudas comunes sobre Git y GitHub que surgen al trabajar
+                en equipo en este proyecto.
+            </p>
+        </section>
+
+        <section class="faq">
+
+            <input type="text" id="buscador" class="buscador"
+                   placeholder="Buscar una pregunta... (ej: rama, commit, merge)">
+
+            <h3>Conceptos básicos</h3>
+
+            <details>
+                <summary>¿Qué es Git?</summary>
+                <p>
+                    Git es un sistema de control de versiones. Guarda el historial
+                    de cambios de un proyecto para que puedas volver a versiones
+                    anteriores y trabajar con otras personas sin perder información.
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Cuál es la diferencia entre Git y GitHub?</summary>
+                <p>
+                    Git es la herramienta que se instala en tu computadora.
+                    GitHub es una plataforma en Internet donde se guardan los
+                    repositorios para compartirlos y colaborar con otros.
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Qué es un commit?</summary>
+                <p>
+                    Es una "foto" del proyecto en un momento dado, con un mensaje
+                    que explica qué cambió. Se crea con
+                    <code>git commit -m "mensaje"</code>.
+                </p>
+            </details>
+
+            <h3>Trabajo con ramas</h3>
+
+            <details>
+                <summary>¿Qué es una rama (branch)?</summary>
+                <p>
+                    Es una línea de trabajo independiente. Permite hacer cambios
+                    sin afectar la rama principal (<code>main</code>) hasta que
+                    estén listos.
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Cómo creo mi propia rama?</summary>
+                <p>
+                    Con <code>git checkout -b nombre-de-mi-rama</code> se crea
+                    la rama y te cambias a ella en un solo paso.
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Cómo subo mi rama a GitHub?</summary>
+                <p>
+                    La primera vez usa
+                    <code>git push -u origin nombre-de-mi-rama</code>.
+                    Después basta con <code>git push</code>.
+                </p>
+            </details>
+
+            <h3>Colaboración</h3>
+
+            <details>
+                <summary>¿Qué es un Pull Request?</summary>
+                <p>
+                    Es una solicitud para unir los cambios de tu rama con
+                    <code>main</code>. El responsable del repositorio los revisa
+                    y decide si los acepta (merge).
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Qué es un conflicto y cómo se evita?</summary>
+                <p>
+                    Ocurre cuando dos personas modifican las mismas líneas de un
+                    archivo. Se evita trabajando en archivos distintos y
+                    actualizando tu rama seguido con <code>git pull origin main</code>.
+                </p>
+            </details>
+
+            <details>
+                <summary>¿Cómo actualizo mi proyecto con los cambios de otros?</summary>
+                <p>
+                    Usa <code>git pull origin main</code> para traer los últimos
+                    cambios de la rama principal a tu copia local.
+                </p>
+            </details>
+
+            <p id="sinResultados" class="sin-resultados">
+                No se encontraron preguntas con ese texto.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Taller Apps Internet © 2026 — Página de preguntas por Jharol</p>
+    </footer>
+
+    <!-- Buscador: filtra las preguntas mientras escribes -->
+    <script>
+        const buscador = document.getElementById("buscador");
+        const preguntas = document.querySelectorAll(".faq details");
+        const sinResultados = document.getElementById("sinResultados");
+
+        buscador.addEventListener("input", function () {
+            const texto = buscador.value.toLowerCase();
+            let visibles = 0;
+
+            preguntas.forEach(function (pregunta) {
+                const coincide = pregunta.textContent.toLowerCase().includes(texto);
+                pregunta.style.display = coincide ? "block" : "none";
+                if (coincide) {
+                    visibles++;
+                }
+            });
+
+            sinResultados.style.display = visibles === 0 ? "block" : "none";
+        });
+    </script>
+
+</body>
+</html>
